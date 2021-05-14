@@ -27,13 +27,13 @@ export default class Resty extends Component {
 
         // set results state with API response
          return apiCall(url, method, body)
-         .then(response => this.setState({ results: JSON.stringify(response) }))
+         .then(response => this.setState({ results: response }))
     }
     
     render() {
         // destructure off of state
         const { url, method, body, results} = this.state;
-        console.log('resty results', typeof results);
+        // console.log('resty results:', url, method, body);
         return (
             <>
                 <Header />
