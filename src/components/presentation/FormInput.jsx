@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function FormInput ({ url, method, body }) {
+function FormInput ({ url, method, body, onChange, onSubmit }) {
     return (
         <div>
-            <form>
+            <form onSubmit={onSubmit}>
                 <input 
                     type="text"
-                    name="api-url"
+                    name="url"
                     placeholder="API URL"
-                    value={url}/>
+                    value={url}
+                    onChange={onChange}/>
 
                 <label>GET
                     <input 
                         type="radio"
                         name="method"
                         value="GET"
-                        checked={method === "GET"}/>
+                        checked={method === "GET"}
+                        onChange={onChange}/>
                 </label>
 
                 <label>POST
@@ -24,7 +26,8 @@ function FormInput ({ url, method, body }) {
                         type="radio"
                         name="method"
                         value="POST"
-                        checked={method === "POST"}/>
+                        checked={method === "POST"}
+                        onChange={onChange}/>
                 </label>
 
                 <label>PUT
@@ -32,7 +35,8 @@ function FormInput ({ url, method, body }) {
                         type="radio"
                         name="method"
                         value="PUT"
-                        checked={method === "PUT"}/>
+                        checked={method === "PUT"}
+                        onChange={onChange}/>
                 </label>
 
                 <label>DELETE
@@ -40,14 +44,16 @@ function FormInput ({ url, method, body }) {
                         type="radio"
                         name="method"
                         value="DELETE"
-                        checked={method === "DELETE"}/>
+                        checked={method === "DELETE"}
+                        onChange={onChange}/>
                 </label>
 
                 <button aria-label="submit">Submit</button>
 
                 <textarea 
-                    name="json-body"
-                    value={body}>
+                    name="body"
+                    value={body}
+                    onChange={onChange}>
                 </textarea>
 
             </form>
@@ -58,7 +64,9 @@ function FormInput ({ url, method, body }) {
 FormInput.propTypes = {
 url: PropTypes.string.isRequired,
 method: PropTypes.string.isRequired,
-json: PropTypes.string.isRequired,
+body: PropTypes.string.isRequired,
+onChange: PropTypes.func.isRequired,
+onSubmit: PropTypes.func.isRequired,
 }
 
 export default FormInput;

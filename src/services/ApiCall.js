@@ -1,7 +1,8 @@
-export const apiCall = async (url, method, body) => {
+export const apiCall = (url, method, body) => {
     if(method === 'GET') {
         return fetch(url)
         .then(res => res.json())
+        // .then(console.log);
     }
 
     // DELETE does not send body
