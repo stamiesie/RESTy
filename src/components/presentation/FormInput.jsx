@@ -66,12 +66,11 @@ function FormInput ({ url, method, body, onChange, onSubmit }) {
 }
 
 FormInput.propTypes = {
-url: PropTypes.string.isRequired,
-method: PropTypes.string.isRequired,
-body: PropTypes.string.isRequired,
-onChange: PropTypes.func.isRequired,
-onSubmit: PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired,
+    method: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
 }
 
 export default FormInput;
-

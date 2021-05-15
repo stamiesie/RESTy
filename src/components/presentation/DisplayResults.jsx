@@ -7,17 +7,16 @@ function DisplayResults({ results }) {
     return (
         <div>
             <ReactJson 
-            src={results} 
-            name={false}
-            displayObjectSize={false}
-            displayDataTypes={false}/>
+                src={results} 
+                name={false}
+                displayObjectSize={false}
+                displayDataTypes={false}/>
         </div>
     )
 }
 
 DisplayResults.propTypes = {
-results: PropTypes.array.isRequired,
+    results: PropTypes.array.isRequired,
 };
 
 export default DisplayResults;
-

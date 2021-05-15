@@ -3,12 +3,14 @@ import { apiCall } from '../../services/ApiCall';
 import Header from '../presentation/Header';
 import FormInput from '../presentation/FormInput';
 import DisplayResults from '../presentation/DisplayResults';
+import HistoryList from '../presentation/HistoryList';
 
 export default class Resty extends Component {
     state = {
         url: '',
         method: '',
         body: '',
+        requests: [],
         results: [],
     }
 // using dynamic property keys eliminates the need to make multiple handleChanges for text, method(radio) inputs and body
@@ -18,7 +20,13 @@ export default class Resty extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.fetchData();
+        this.fetchData()
+
+        .then(this.setState(state => ({
+            requests: [
+                ...state.requests, { method: state.method, url: state.url}
+            ]
+        })));
     }
 
     fetchData = () => {
@@ -32,19 +40,23 @@ export default class Resty extends Component {
     
     render() {
         // destructure off of state
-        const { url, method, body, results} = this.state;
-        // console.log('resty results:', url, method, body);
+        const { url, method, body, results, requests} = this.state;
         return (
             <>
                 <Header />
                 <FormInput 
-                url={url}
-                method={method}
-                body={body}
-                onSubmit={this.handleSubmit}
-                onChange={this.handleChange} 
+                    url={url}
+                    method={method}
+                    body={body}
+                    onSubmit={this.handleSubmit}
+                    onChange={this.handleChange} 
                 />
-                <DisplayResults results={results} />
+                <DisplayResults 
+                    results={results}
+                />
+                <HistoryList 
+                    requests={requests}
+                />
             </>
         )
     }
