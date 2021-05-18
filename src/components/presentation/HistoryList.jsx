@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import HistoryItem from './HistoryItem';
 
 const HistoryList = ({ requests }) => (
-        <ul aria-label="history-list" role="list">
+        <ul aria-label="history" role="list">
 
             {requests.map((request, index) => (
                     <li key={`${request.method}-${request.url}-${index}`}>

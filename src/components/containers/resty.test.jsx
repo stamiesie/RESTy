@@ -5,26 +5,26 @@ import Resty from './resty';
 
 
 describe ('unResty container', () => {
-    it('fetches a request from API', () => {
+    it('fetches a request from API', async () => {
         render(<Resty />)
 
         screen.getByText('unResty', {exact: false});
 
-        const apiInput = screen.getByRole('textbox', { name: 'url' });
+        const apiInput = await screen.getByRole('textbox', { name: 'url' });
         userEvent.type(apiInput, 'https://jsonplaceholder.typicode.com/posts/1');
 
-        const radioButtons = screen.findByLabelText('GET');
+        const radioButtons = await screen.findByLabelText('GET');
         userEvent.type(radioButtons, 'GET');
 
-        // const fetchButton = screen.getByRole('button', { name: 'submit' });
-        // fireEvent.click(fetchButton);
+        const fetchButton = await screen.getByRole('button', { name: 'submit' });
+        fireEvent.click(fetchButton);
 
         screen.getByRole('textbox', { name: 'results' });
 
-        // return waitFor(() => {
-        //     const historyList = screen.getByRole('list', { name: 'history-list' });
-        //     console.log(historyList);
-        //     expect(historyList).not.toBeEmptyDOMElement();
-        // });
+        return waitFor(() => {
+            const historyList = screen.getAllByText('json', { exact: false });
+            // console.log(historyList);
+            expect(historyList[0]).not.toBeEmptyDOMElement();
+        });
     })
 })
