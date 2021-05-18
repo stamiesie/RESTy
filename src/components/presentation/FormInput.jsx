@@ -11,6 +11,7 @@ function FormInput ({ url, method, body, onChange, onSubmit }) {
                     type="text"
                     name="url"
                     placeholder="API URL"
+                    aria-label="url"
                     value={url}
                     onChange={onChange}/>
                 <div>
@@ -56,6 +57,7 @@ function FormInput ({ url, method, body, onChange, onSubmit }) {
                 <textarea
                 className={styles.textbox} 
                     name="body"
+                    aria-label="results"
                     value={body}
                     onChange={onChange}>
                 </textarea>
