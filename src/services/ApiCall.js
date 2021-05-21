@@ -1,7 +1,7 @@
-export const apiCall = (url, method, body) => {
+export const apiCall = ({url, method, body}) => {
     console.log(url, method, typeof body)
     if(method === 'GET') {
-        // console.log('HIT 1')
+        console.log('HIT 1')
         return fetch(url)
 
         .then(res => res.json())
@@ -18,23 +18,16 @@ export const apiCall = (url, method, body) => {
 
     // POST, PUT
     else if(method === 'POST' || method === 'PUT') {
-        // console.log('HIT 2')
+        console.log('HIT 2', method, url)
+        console.log('!!!', body)
         return fetch(url, {
-            method: method,
+            method,
             headers: {
                 'Content-Type': 'application/json'
             },
             body
         })
 
-        .then(async response => {
-            try {
-                const data = await response.json()
-                console.log('response data?', data)
-            } catch(error) {
-                console.log('Error happened here!')
-                console.error(error)
-            }
-        })
+        .then(res => res.json())
     }
 }

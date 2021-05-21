@@ -34,7 +34,7 @@ export default class Resty extends Component {
         const { url, method, body } = this.state;
 
         // set results state with API response
-         return apiCall(url, method, body)
+         return apiCall({url, method, body})
          .then(response => this.setState({ results: response }))
     }
     
